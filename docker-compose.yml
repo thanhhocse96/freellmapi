@@ -1,0 +1,14 @@
+services:
+  freellmapi:
+    build: .
+    container_name: freellmapi
+    ports:
+      - "3001:3001"
+    environment:
+      - ENCRYPTION_KEY=<chuỗi_64_ký_tự_hex_ngẫu_nhiên>
+      - PORT=3001
+      - NODE_ENV=production
+    volumes:
+      # Mount thư mục data để SQLite không bị mất khi restart
+      - ./data:/app/server/data
+    restart: unless-stopped
